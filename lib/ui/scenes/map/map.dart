@@ -33,6 +33,10 @@ class _MapViewState extends State<MapView> {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
+      appBar: AppBar(
+        title: Text('You visited 0 places'),
+        centerTitle: true,
+      ),
       body: Container(
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
@@ -43,7 +47,7 @@ class _MapViewState extends State<MapView> {
           onMapCreated: (GoogleMapController controller) {
             _controller.complete(controller);
           },
-          
+
         ),
     ),
       floatingActionButton: FloatingActionButton.extended(
