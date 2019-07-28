@@ -1,5 +1,6 @@
 import 'dart:async';
-import 'package:location/location.dart';
+
+import 'package:geolocator/geolocator.dart';
 
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -12,10 +13,6 @@ class MapView extends StatefulWidget {
 
 class _MapViewState extends State<MapView> {
   Completer<GoogleMapController> _controller = Completer();
-
-  LocationData _currentLocation;
-  StreamSubscription<LocationData> _locationSubscription;
-  var _locationService = new Location();
 
   static final CameraPosition _kGooglePlex = CameraPosition(
     target: LatLng(54.537435, 18.482041),
@@ -30,15 +27,7 @@ class _MapViewState extends State<MapView> {
 
   void initState() {
     super.initState();
-    initPlatformState();
-
-    _locationSubscription = _locationService
-        .onLocationChanged()
-        .listen((LocationData currentLocation) async {
-      setState(() {
-        _currentLocation = currentLocation;
-      });
-    });
+    askForLocation();
   }
 
   @override
@@ -54,6 +43,7 @@ class _MapViewState extends State<MapView> {
           onMapCreated: (GoogleMapController controller) {
             _controller.complete(controller);
           },
+          
         ),
     ),
       floatingActionButton: FloatingActionButton.extended(
@@ -69,12 +59,9 @@ class _MapViewState extends State<MapView> {
     controller.animateCamera(CameraUpdate.newCameraPosition(_kLake));
   }
 
-  void initPlatformState() async {
-    try {
-      _currentLocation = await _locationService.getLocation();
-
-    } catch (e) {
-      print("Location error");
-    }
+  void askForLocation () async {
+    GeolocationStatus geolocationStatus  = await Geolocator().checkGeolocationPermissionStatus();
+    Position position = await Geolocator().getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
+    print(position);
   }
 }
