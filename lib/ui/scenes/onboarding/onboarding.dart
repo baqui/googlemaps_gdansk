@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'data.dart';
 import 'Page_indicator.dart';
 import 'package:gradient_text/gradient_text.dart';
+import 'package:googlemaps_gdansk/core/services/i18n.dart';
 
 
 class OnboardingView extends StatefulWidget {
@@ -121,7 +122,7 @@ class _OnboardingViewState extends State<OnboardingView> with TickerProviderStat
                             transform:
                                 Matrix4.translationValues(0, 50.0 * (1 - y), 0),
                             child: Text(
-                              page.body,
+                              i18n.text('test123'),//page.body,
                               style: TextStyle(
                                   fontSize: 20.0,
                                   fontFamily: "Montserrat-Medium",
