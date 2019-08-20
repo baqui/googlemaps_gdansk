@@ -86,13 +86,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.5.19+2"
-  gradient_text:
-    dependency: "direct main"
-    description:
-      name: gradient_text
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.2"
   http:
     dependency: "direct main"
     description:
