@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 var pageList = [
   PageModel(
       imageUrl: "assets/illustration.png",
@@ -11,15 +9,13 @@ var pageList = [
       body: "onboarding_description_2"),
   PageModel(
       imageUrl: "assets/illustration3.png",
-      title: "onboarding_title_2",
-      body: "onboarding_description_2"),
+      title: "onboarding_title_3",
+      body: "onboarding_description_3"),
 ];
-
 
 class PageModel {
   var imageUrl;
   var title;
   var body;
-  List<Color> titleGradient = [];
-  PageModel({this.imageUrl, this.title, this.body, this.titleGradient});
+  PageModel({this.imageUrl, this.title, this.body });
 }

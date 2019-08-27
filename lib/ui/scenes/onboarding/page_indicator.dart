@@ -15,9 +15,9 @@ class PageIndicator extends StatelessWidget {
               color: isActive ? Colors.white : Color(0xFF3E4750),
               boxShadow: [
                 BoxShadow(
-                    color: Colors.black12,
-                    offset: Offset(0.0, 2.0),
-                    blurRadius: 2.0)
+                  color: Colors.black12,
+                  offset: Offset(0.0, 2.0),
+                  blurRadius: 2.0)
               ]),
         ),
       ),
