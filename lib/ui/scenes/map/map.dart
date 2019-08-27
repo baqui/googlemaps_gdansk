@@ -48,7 +48,7 @@ class _MapViewState extends State<MapView> {
             mapType: MapType.normal,
             myLocationEnabled: true,
             myLocationButtonEnabled: false,
-            mapToolbarEnabled: true,
+            mapToolbarEnabled: false,
             initialCameraPosition: _neptunesFountain,
             markers: Set<Marker>.of(markers.values),
             onMapCreated: (GoogleMapController controller) {
@@ -59,29 +59,63 @@ class _MapViewState extends State<MapView> {
         selectedPoint != null ?
           Positioned(
             bottom: 80,
-            left: 50,
-            child: GestureDetector(
-              onTap: () => Navigator.pushNamed(context, 'history_details', arguments: selectedPoint.id),
-              child: Container(
-                padding: EdgeInsets.all(5.0),
-                width: MediaQuery.of(context).size.width - 100,
-                height: 60,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(8.0)
+            left: 35,
+            child: Container(
+              decoration: BoxDecoration(
+                boxShadow: <BoxShadow>[
+                  BoxShadow(
+                    color: Colors.grey,
+                    blurRadius: 5.0,
+                  )
+                ]
+              ),
+              child: GestureDetector(
+                onTap: () => Navigator.pushNamed(context, 'history_details', arguments: selectedPoint.id),
+                child: Container(
+                  padding: EdgeInsets.all(5.0),
+                  width: MediaQuery.of(context).size.width - 70,
+                  height: 65,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(8.0)
+                  ),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      Container(
+                        width: 40.0,
+                        height: 40.0,
+                        margin: EdgeInsets.symmetric(horizontal: 15.0),
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Colors.black.withOpacity(0.45),
+                          image: new DecorationImage(
+                              fit: BoxFit.fill,
+                              image: AssetImage(selectedPoint.before)
+                          )
+                        )
+                      ),
+                      Expanded(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          mainAxisSize: MainAxisSize.min,
+                          children: <Widget>[
+                            Container(
+                              child: Text(
+                                i18n.text(selectedPoint.name),
+                                //overflow: TextOverflow.ellipsis,
+                                style: TextStyle(
+                                  color: Colors.black.withOpacity(0.8),
+                                  fontSize: 14.0,
+                                  fontFamily: "Montserrat-Black")
+                              )
+                            )
+                          ],
+                        )
+                      )
+                    ],
+                  )
                 ),
-                child: Column(
-                  children: <Widget>[
-                    Text(
-                      i18n.text(selectedPoint.name),
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 18.0,
-                        fontFamily: "Montserrat-Black",
-                        letterSpacing: 1.0)
-                    )
-                  ],
-                )
               ),
             )
           ) : null
@@ -99,14 +133,14 @@ class _MapViewState extends State<MapView> {
       tilt: 0.0,
       zoom: 18);
 
-    final GoogleMapController controller = await _controller.future;
+    //final GoogleMapController controller = await _controller.future;
     //controller.animateCamera(CameraUpdate.newCameraPosition(_center));
   }
 
   void setMarkers () async {
     for(HistoryPoint point in historyPoints.values) {
       var markerId = MarkerId(point.id);
-      final Uint8List markerIcon = await getBytesFromAsset('assets/flag-pl.png', 100);
+      final Uint8List markerIcon = await getBytesFromAsset('assets/marker.png', 120);
         markers[markerId] = Marker(
           markerId: MarkerId(point.id),
           icon: BitmapDescriptor.fromBytes(markerIcon),

@@ -35,7 +35,7 @@ class _CustomDialogState extends State<CustomDialog> {
     return Container(
       width: width,
       height: height,
-      color: Colors.transparent,
+      color: Colors.black.withOpacity(0.6),
       child: Stack(
         children: <Widget>[
           Container(
@@ -85,7 +85,8 @@ class _CustomDialogState extends State<CustomDialog> {
             ),
           ),
           Positioned(
-            bottom: 15.0,
+            bottom: 25.0,
+            left: 10.0,
             width: width - 20,
             child: Material(
               color: Colors.transparent,

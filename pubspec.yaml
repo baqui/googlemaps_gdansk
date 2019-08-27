@@ -49,13 +49,11 @@ flutter:
   # the material Icons class.
   uses-material-design: true
   assets:
-    - assets/illustration.png
-    - assets/illustration2.png
-    - assets/illustration3.png
     - assets/locale/en.json
     - assets/locale/pl.json
     - assets/flag-en.png
     - assets/flag-pl.png
+    - assets/marker.png
     - assets/before-after/1/before.jpg
     - assets/before-after/1/after.jpg
     - assets/before-after/2/before.jpg
