@@ -51,23 +51,58 @@ class _HistoryDetailsState extends State<HistoryDetails> {
                             ),
                           );
                         },
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(15.0),
-                          child: Image.asset(point.before)
+                        child: Container(
+                          margin: EdgeInsets.only(bottom: 20.0),
+                          child: Stack(
+                            children: <Widget>[
+                              ClipRRect(
+                                borderRadius: BorderRadius.circular(15.0),
+                                child: Image.asset(point.after)
+                              ),
+                              Positioned(
+                                top: 14.0,
+                                right: 14.0,
+                                child: Container(
+                                  padding: EdgeInsets.all(8.0),
+                                  decoration: BoxDecoration(
+                                    border: Border.all(color: Colors.white),
+                                    borderRadius: BorderRadius.circular(40.0)
+                                  ),
+                                  child: Icon( Icons.photo_album, color: Colors.white, size: 40.0 )
+                                ),
+                              )
+                            ],
+                          )
                         ),
                       ),
-                      UIHelper.verticalSpaceMedium(),
-                      Text(point.year),
-                      UIHelper.verticalSpaceMedium(),
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(15.0),
-                        child: Image.asset(point.after)
-                      ),
-                      UIHelper.verticalSpaceMedium(),
-                      Text(i18n.text(point.name)),
-                      UIHelper.verticalSpaceMedium(),
-                      Text(i18n.text(point.description)),
-                      UIHelper.verticalSpaceLarge()
+                      Container(
+                        padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 20.0),
+                        child: Column(
+                        children: <Widget>[
+                            Text(i18n.text(point.name), style: 
+                              TextStyle(
+                                color: Colors.black,
+                                fontSize: 18.0,
+                                fontWeight: FontWeight.bold,
+                                fontFamily: "Montserrat-Black")
+                            ),
+                            UIHelper.verticalSpaceMedium(),
+                            RichText(
+                              text: TextSpan(
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  height: 1.25
+                                ),
+                                children: <TextSpan>[
+                                  TextSpan(text: "       "),
+                                  TextSpan(text: i18n.text(point.description))
+                                ]
+                              )
+                            ),
+                            UIHelper.verticalSpaceLarge()
+                          ],
+                        )
+                      )
                     ],
                   )
                 )
